@@ -22,14 +22,14 @@ headers = {
 }
 
 
-def get_login():
+def get_login(username,password):
     session.get('https://kyfw.12306.cn/otn/login/init',headers = headers)
     try:
         if captcha_check():
             data = {
                 'appid':'otn',
-                'password':'qwe960126',
-                'username':'18328498928'
+                'password':password,
+                'username':username,
             }
             while True:
                 r = session.post('https://kyfw.12306.cn/passport/web/login',data = data,headers =headers)
@@ -82,7 +82,7 @@ def captcha_check():
 
 
 def main():
-    get_login()
+    get_login(username,password)
 
 if __name__ == '__main__':
     main()
